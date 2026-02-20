@@ -412,6 +412,232 @@ Always:
 
 ---
 
+# React JS Revision – Lecture 3
+
+## Creating Custom React Library, React Tree, JSX and Babel
+
+This lecture focuses on understanding **how React works internally**, **how JSX is converted**, and **creating our own custom React render function**.
+
+We also learned about **React.createElement**, **React Tree**, and **Babel**.
+
+---
+
+# Part 1: Creating Our Own React Render Function
+
+We created a custom render function to understand how React renders elements to the DOM.
+
+## Custom Render Function
+
+```js
+function customRender(reactElement, mainContainer) {
+
+    const domElement = document.createElement(reactElement.type);
+
+    domElement.innerHTML = reactElement.children;
+
+    for (const prop in reactElement.props) {
+        if (prop === "children") continue;
+        domElement.setAttribute(prop, reactElement.props[prop]);
+    }
+
+    mainContainer.appendChild(domElement);
+}
+```
+
+---
+
+## Custom React Element Object
+
+```js
+const reactElement = {
+    type: "a",
+    props: {
+        href: "https://google.com",
+        target: "_blank",
+    },
+    children: "click me to visit google",
+};
+```
+
+---
+
+## Rendering to DOM
+
+```js
+const mainContainer = document.querySelector("#root");
+
+customRender(reactElement, mainContainer);
+```
+
+---
+
+# What we learned from this
+
+This is how React internally works:
+
+React Element (Object) → Create DOM Element → Add Props → Add Children → Render to DOM
+
+This helped us understand that:
+
+React is just **JavaScript objects converted into DOM elements**
+
+---
+
+# Part 2: Understanding JSX
+
+Example JSX:
+
+```jsx
+<a href="https://google.com" target="_blank">
+  Visit Google
+</a>
+```
+
+JSX looks like HTML but it is **not HTML**
+
+It is converted into JavaScript.
+
+---
+
+# Part 3: React.createElement
+
+React actually creates elements using:
+
+```js
+const reactElement = React.createElement(
+  'a',
+  { href: "https://google.com", target: "_blank" },
+  'click me to visit google'
+)
+```
+
+This is the real way React creates elements.
+
+---
+
+# Rendering using React
+
+```js
+createRoot(document.getElementById('root')).render(
+  reactElement
+)
+```
+
+---
+
+# Part 4: React Tree
+
+React follows a tree structure.
+
+Example:
+
+```text
+Root
+ └── App
+      └── a
+```
+
+This is called **React Tree**
+
+React updates only changed parts using this tree.
+
+This makes React fast.
+
+---
+
+# Part 5: Role of Babel
+
+Babel is a **JavaScript compiler**
+
+It converts JSX into JavaScript.
+
+Example:
+
+JSX:
+
+```jsx
+const element = <h1>Hello</h1>
+```
+
+Converted by Babel into:
+
+```js
+const element = React.createElement("h1", null, "Hello")
+```
+
+---
+
+# Important Learning
+
+JSX → Babel → React.createElement → React Element Object → DOM
+
+---
+
+# Why plain object didn't work directly
+
+Example:
+
+```js
+const reactElement = {
+ type: "a",
+ props: {},
+ children: ""
+}
+```
+
+Because React expects elements in specific format created by:
+
+React.createElement
+
+Not normal object.
+
+---
+
+# Key Concepts Learned
+
+• How React works internally
+• Creating custom React renderer
+• React Element structure
+• React Tree
+• JSX
+• React.createElement
+• Babel role
+
+---
+
+# Flow Summary
+
+```text
+JSX
+ ↓
+Babel converts
+ ↓
+React.createElement
+ ↓
+React Element Object
+ ↓
+Render using ReactDOM
+ ↓
+DOM Updated
+```
+
+---
+
+# Summary
+
+React is not magic.
+
+It:
+
+• Creates object
+• Converts to DOM
+• Updates efficiently using tree
+
+Babel helps convert JSX into JavaScript.
+
+---
+
+
 
 
 
