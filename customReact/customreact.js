@@ -1,5 +1,5 @@
 
-
+// function to inject element in container
 function customRender(reactElement,mainContainer){
     // const domElement=document.createElement(reactElement.type)
     // domElement.innerHTML=reactElement.children

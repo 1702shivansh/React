@@ -1,7 +1,7 @@
 import React from 'react'
 import {createRoot} from 'react-dom/client'
 import App from './App.jsx'
-
+//updated
 // function MyApp(){
 //   return <div>
 //     <h1>hi from Shivansh</h1>
