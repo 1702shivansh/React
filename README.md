@@ -212,6 +212,207 @@ CRA is older and slower.
 
 ---
 
-# Next Lecture
+# React JS Revision – Lecture 2
+
+## React Structure, Flow and Best Practices
+
+This lecture explains the **internal structure of a React project**, **how React works**, and **important best practices**.
+
+---
+
+# React Project Structure
+
+## In CRA
+
+Important files:
+
+```
+public/index.html
+src/index.js
+src/App.js
+```
+
+Flow:
+
+```
+index.html → index.js → App.js → Components
+```
+
+---
+
+## In Vite
+
+Important files:
+
+```
+index.html
+src/main.jsx
+src/App.jsx
+```
+
+Flow:
+
+```
+index.html → main.jsx → App.jsx → Components
+```
+
+---
+
+# How React Actually Loads
+
+React does not directly control HTML.
+
+Instead:
+
+React injects content inside:
+
+```
+<div id="root"></div>
+```
+
+This div is present inside **index.html**
+
+React connects to this div and renders the entire application inside it.
+
+---
+
+# Script Loading Difference
+
+## CRA
+
+Script is automatically handled and injected by React scripts.
+
+You don't see direct script tag for main React file.
+
+React internally connects:
+
+```
+index.js → index.html
+```
+
+---
+
+## Vite
+
+Script is explicitly written in **index.html**
+
+Example:
+
+```html
+<script type="module" src="/src/main.jsx"></script>
+```
+
+Vite directly loads main.jsx using ES Modules.
+
+---
+
+# Entry Point Difference
+
+| CRA      | Vite     |
+| -------- | -------- |
+| index.js | main.jsx |
+
+Both connect React with HTML root div.
+
+---
+
+# React Flow Diagram
+
+```
+index.html
+   ↓
+main.jsx / index.js
+   ↓
+App.jsx / App.js
+   ↓
+Components
+   ↓
+UI Rendered
+```
+
+---
+
+# Best Practices Learned
+
+## 1. Component Name should start with Capital Letter
+
+Correct:
+
+```jsx
+function App() {}
+```
+
+Wrong:
+
+```jsx
+function app() {}
+```
+
+Reason:
+
+React treats lowercase as normal HTML tags.
+
+---
+
+## 2. Use JSX for Components
+
+JSX allows writing HTML inside JavaScript.
+
+Example:
+
+```jsx
+function App() {
+  return <h1>Hello World</h1>
+}
+```
+
+---
+
+## 3. Component Based Structure
+
+React apps are built using small reusable components.
+
+Example:
+
+```
+App
+ ├ Navbar
+ ├ Hero
+ ├ Footer
+```
+
+---
+
+# What we learned in this lecture
+
+* React project structure
+* Flow of React application
+* How React connects to HTML
+* Difference between CRA and Vite script loading
+* JSX basics
+* Best practices for components
+
+---
+
+# Summary
+
+React renders UI inside root div.
+
+Flow starts from:
+
+```
+index.html → main.jsx → App.jsx
+```
+
+Always:
+
+* Use Capital letter for components
+* Use JSX
+* Follow component based structure
+
+---
+
+
+
 
 Understanding project structure and React basics
