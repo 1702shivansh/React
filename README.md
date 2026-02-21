@@ -640,5 +640,633 @@ Babel helps convert JSX into JavaScript.
 
 
 
+# React JS Revision – Lecture 4
 
-Understanding project structure and React basics
+## Why We Need Hooks in React
+
+This lecture explains the **problem with normal variables in React** and **why Hooks were introduced**.
+
+---
+
+# Problem Without Hooks
+
+Example:
+
+```jsx
+let counter = 0;
+
+function increment() {
+  counter++;
+  console.log(counter);
+}
+```
+
+Issue:
+
+Even if the value changes, **UI does not update automatically**
+
+Because React **does not track normal variables**
+
+React only updates UI when **state changes**
+
+---
+
+# What is a Hook?
+
+Hooks are **special functions in React** that let you use:
+
+• State
+• Lifecycle features
+• Other React features
+
+in **functional components**
+
+---
+
+# Most Important Hook: useState
+
+useState allows React to:
+
+• Track variable
+• Update UI automatically
+
+Example:
+
+```jsx
+const [counter, setCounter] = useState(0);
+```
+
+---
+
+# Why Hooks are Needed
+
+Hooks solve these problems:
+
+• Normal variables do not trigger re-render
+• UI does not update automatically
+• No state management in functional components earlier
+
+Hooks provide:
+
+• State management
+• Automatic UI update
+• Better control
+
+---
+
+# Before Hooks
+
+Only class components had state:
+
+```jsx
+class App extends React.Component {
+}
+```
+
+Functional components could not use state.
+
+---
+
+# After Hooks
+
+Functional components can use state:
+
+```jsx
+function App() {
+}
+```
+
+No need for class components.
+
+---
+
+# Benefits of Hooks
+
+• Makes code simpler
+• Removes need for class components
+• Easier to manage state
+• Cleaner code
+• Better readability
+
+---
+
+# Flow Without Hook
+
+```text
+Variable change
+ ↓
+React does NOT detect
+ ↓
+UI NOT updated
+```
+
+---
+
+# Flow With Hook
+
+```text
+State change using Hook
+ ↓
+React detects change
+ ↓
+Component re-renders
+ ↓
+UI updated
+```
+
+---
+
+# Summary
+
+Hooks are needed because React:
+
+Only updates UI when state changes
+
+Hooks allow functional components to use state and update UI.
+
+---
+
+# Most Common Hooks
+
+• useState
+• useEffect
+• useRef
+
+---
+
+# React JS Revision – Lecture 5
+
+## Virtual DOM, Reconciliation, Fiber Architecture and Keys
+
+This lecture explains **how React updates the UI efficiently** and the role of **Reconciliation, Fiber, and Keys**.
+
+---
+
+# Virtual DOM (Concept)
+
+Virtual DOM is a **JavaScript representation of the Real DOM**
+
+Example:
+
+Real DOM:
+
+```html
+<div>
+  <h1>Hello</h1>
+</div>
+```
+
+Virtual DOM:
+
+```js
+{
+  type: "div",
+  children: [
+    { type: "h1", children: "Hello" }
+  ]
+}
+```
+
+---
+
+# Why Virtual DOM was needed
+
+Direct DOM updates are:
+
+• Slow
+• Expensive
+
+Virtual DOM improves performance by:
+
+• Comparing old and new version
+• Updating only changed parts
+
+---
+
+# Important Note
+
+Virtual DOM is just a **concept**
+
+The real algorithm behind it is called:
+
+# Reconciliation
+
+---
+
+# Reconciliation
+
+Reconciliation is the **algorithm React uses to update the UI**
+
+It:
+
+• Compares old tree and new tree
+• Finds differences
+• Updates only required elements
+
+This process is called:
+
+Diffing Algorithm
+
+---
+
+# Example
+
+Old:
+
+```text
+<h1>Hello</h1>
+```
+
+New:
+
+```text
+<h1>Hello Shivansh</h1>
+```
+
+React updates only text
+
+Not entire element
+
+---
+
+# Problem with Old System
+
+Reconciliation earlier was:
+
+• Synchronous
+• Blocking
+• Slow for large apps
+
+To solve this React introduced:
+
+# Fiber Architecture
+
+---
+
+# Fiber Architecture
+
+Fiber is the **new reconciliation engine**
+
+It makes React:
+
+• Faster
+• Smarter
+• Non-blocking
+
+---
+
+# Why Fiber is better
+
+Fiber allows React to:
+
+• Break work into small tasks
+• Pause work
+• Resume work
+• Prioritize important updates
+
+This improves performance.
+
+---
+
+# React Tree using Fiber
+
+Example:
+
+```text
+App
+ ├ Navbar
+ ├ Sidebar
+ └ Content
+```
+
+React updates only changed component
+
+Not entire app
+
+---
+
+# Keys in React (Very Important)
+
+Keys help React identify elements uniquely in lists.
+
+---
+
+# Example Without Key
+
+```jsx
+{items.map(item =>
+  <li>{item}</li>
+)}
+```
+
+Problem:
+
+React gets confused when list changes
+
+Performance becomes slow
+
+---
+
+# Example With Key
+
+```jsx
+{items.map(item =>
+  <li key={item.id}>{item}</li>
+)}
+```
+
+Now React can:
+
+• Identify element
+• Update efficiently
+
+---
+
+# Why Keys are Needed
+
+Keys help in:
+
+• Faster reconciliation
+• Better performance
+• Correct UI updates
+
+---
+
+# Real Example Problem Without Key
+
+Old:
+
+```text
+A B C
+```
+
+New:
+
+```text
+B C D
+```
+
+Without key:
+
+React re-renders all
+
+With key:
+
+React updates only changed item
+
+---
+
+# Summary Flow
+
+```text
+State change
+ ↓
+Reconciliation
+ ↓
+Fiber processes update
+ ↓
+Diff calculated
+ ↓
+DOM updated efficiently
+```
+
+---
+
+# Key Concepts Learned
+
+• Virtual DOM is a concept
+• Reconciliation is the real algorithm
+• Fiber is the modern engine
+• Keys improve performance
+• React updates only required elements
+
+---
+
+# Best Practice
+
+Always use unique key in lists:
+
+```jsx
+key={item.id}
+```
+
+Never use:
+
+```jsx
+key={index}
+```
+
+(if list changes dynamically)
+
+---
+
+# Final Summary
+
+React is fast because of:
+
+• Reconciliation
+• Fiber Architecture
+• Efficient DOM updates
+• Proper use of Keys
+
+---
+
+# React JS Revision – Lecture 6
+
+## Props in React and Basics of Tailwind CSS
+
+This lecture covers **Props**, **reusable components**, and **basic usage of Tailwind CSS in React**.
+
+---
+
+# What are Props?
+
+Props (Properties) are used to **pass data from parent component to child component**
+
+They make components **dynamic and reusable**
+
+---
+
+# Example of Props
+
+Parent Component:
+
+```jsx
+<Card username="Shivansh" />
+```
+
+Child Component:
+
+```jsx
+function Card(props) {
+  return <h1>Hello {props.username}</h1>
+}
+```
+
+Output:
+
+```text
+Hello Shivansh
+```
+
+---
+
+# Why Props are Needed
+
+Props help to:
+
+• Pass data
+• Reuse components
+• Make dynamic UI
+
+Without props, components would be static.
+
+---
+
+# Reusable Component Example
+
+```jsx
+function Card(props) {
+  return (
+    <div>
+      <h2>{props.username}</h2>
+      <p>{props.post}</p>
+    </div>
+  )
+}
+```
+
+Using reusable component:
+
+```jsx
+<Card username="Shivansh" post="Frontend Developer" />
+<Card username="Rahul" post="Backend Developer" />
+```
+
+---
+
+# Props Flow
+
+```text
+Parent Component
+      ↓
+Pass Props
+      ↓
+Child Component
+      ↓
+UI Render
+```
+
+---
+
+# Props are Read-Only
+
+Props cannot be modified inside child component.
+
+Props are immutable.
+
+---
+
+# Tailwind CSS in React
+
+Tailwind is a **utility-first CSS framework**
+
+It is used to style components quickly.
+
+---
+
+# Example Tailwind Styling
+
+```jsx
+<h1 className="text-3xl font-bold text-blue-500">
+  Hello Shivansh
+</h1>
+```
+
+---
+
+# Why className not class?
+
+React uses:
+
+```jsx
+className
+```
+
+because:
+
+```jsx
+class
+```
+
+is reserved keyword in JavaScript.
+
+---
+
+# Example Reusable Card with Tailwind
+
+```jsx
+function Card(props) {
+  return (
+    <div className="bg-gray-200 p-4 rounded-lg">
+      <h2 className="text-xl font-bold">{props.username}</h2>
+      <p>{props.post}</p>
+    </div>
+  )
+}
+```
+
+---
+
+# Benefits of Tailwind
+
+• Fast styling
+• No separate CSS file needed
+• Clean code
+• Highly customizable
+
+---
+
+# What we learned in this lecture
+
+• What are Props
+• How to pass Props
+• Reusable components
+• Props are read-only
+• Basics of Tailwind CSS
+• Styling React components
+
+---
+
+# Summary
+
+Props allow components to become reusable.
+
+Tailwind helps in fast and easy styling.
+
+Reusable components improve code quality.
+
+---
+
+# Example Final Flow
+
+```text
+App Component
+   ↓
+Pass Props
+   ↓
+Reusable Card Component
+   ↓
+Styled using Tailwind
+   ↓
+UI Rendered
+```
+
+---
+
+# Next Lecture
+
+useState Hook and state management
+
+
+
