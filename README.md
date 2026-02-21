@@ -640,5 +640,161 @@ Babel helps convert JSX into JavaScript.
 
 
 
+# React JS Revision – Lecture 4
 
-Understanding project structure and React basics
+## Why We Need Hooks in React
+
+This lecture explains the **problem with normal variables in React** and **why Hooks were introduced**.
+
+---
+
+# Problem Without Hooks
+
+Example:
+
+```jsx
+let counter = 0;
+
+function increment() {
+  counter++;
+  console.log(counter);
+}
+```
+
+Issue:
+
+Even if the value changes, **UI does not update automatically**
+
+Because React **does not track normal variables**
+
+React only updates UI when **state changes**
+
+---
+
+# What is a Hook?
+
+Hooks are **special functions in React** that let you use:
+
+• State
+• Lifecycle features
+• Other React features
+
+in **functional components**
+
+---
+
+# Most Important Hook: useState
+
+useState allows React to:
+
+• Track variable
+• Update UI automatically
+
+Example:
+
+```jsx
+const [counter, setCounter] = useState(0);
+```
+
+---
+
+# Why Hooks are Needed
+
+Hooks solve these problems:
+
+• Normal variables do not trigger re-render
+• UI does not update automatically
+• No state management in functional components earlier
+
+Hooks provide:
+
+• State management
+• Automatic UI update
+• Better control
+
+---
+
+# Before Hooks
+
+Only class components had state:
+
+```jsx
+class App extends React.Component {
+}
+```
+
+Functional components could not use state.
+
+---
+
+# After Hooks
+
+Functional components can use state:
+
+```jsx
+function App() {
+}
+```
+
+No need for class components.
+
+---
+
+# Benefits of Hooks
+
+• Makes code simpler
+• Removes need for class components
+• Easier to manage state
+• Cleaner code
+• Better readability
+
+---
+
+# Flow Without Hook
+
+```text
+Variable change
+ ↓
+React does NOT detect
+ ↓
+UI NOT updated
+```
+
+---
+
+# Flow With Hook
+
+```text
+State change using Hook
+ ↓
+React detects change
+ ↓
+Component re-renders
+ ↓
+UI updated
+```
+
+---
+
+# Summary
+
+Hooks are needed because React:
+
+Only updates UI when state changes
+
+Hooks allow functional components to use state and update UI.
+
+---
+
+# Most Common Hooks
+
+• useState
+• useEffect
+• useRef
+
+---
+
+# Next Lecture
+
+Deep dive into useState Hook
+
