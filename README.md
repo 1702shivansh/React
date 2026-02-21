@@ -1479,7 +1479,140 @@ React batches state updates, so multiple setState(count+1) use same old value. U
 
 ---
 
+# React JS Revision – Lecture 8
+
+## Background Color Changer Project
+
+This lecture focuses on building a **basic background color changer application** using React and applying concepts learned so far.
+
+---
+
+# Project Objective
+
+To create an application where the **background color of the page changes dynamically when user interacts with buttons**.
+
+This project helps in understanding:
+
+• useState Hook
+• Event handling
+• Dynamic UI updates
+• Inline styling in React
+
+---
+
+# Core Concept Used
+
+The main concept behind this project is:
+
+React **state controls the UI**
+
+When state changes → UI updates automatically
+
+In this project:
+
+State stores the **current background color**
+
+When user selects a color → state updates → background changes
+
+---
+
+# How the Flow Works
+
+```text
+User clicks button
+      ↓
+Event triggers
+      ↓
+State updates
+      ↓
+Component re-renders
+      ↓
+Background color changes
+```
+
+---
+
+# Concepts Applied
+
+## 1. useState Hook
+
+Used to store and manage the current background color.
+
+---
+
+## 2. Event Handling
+
+User interaction like button click triggers state change.
+
+---
+
+## 3. Dynamic Styling
+
+Background color is controlled dynamically using state.
+
+---
+
+## 4. Component Re-rendering
+
+Whenever state changes, React automatically updates the UI.
+
+---
+
+# What This Project Teaches
+
+• Practical use of useState
+• How React updates UI
+• How state controls styling
+• How event handling works
+• Basics of interactive React apps
+
+---
+
+# Why This Project is Important
+
+This is the **first step in understanding real React applications**
+
+It teaches the core principle:
+
+State → Controls → UI
+
+Every major React app uses this concept.
+
+---
+
+# Real World Use Cases
+
+This concept is used in:
+
+• Theme switchers (Dark/Light mode)
+• UI customization
+• Dashboards
+• Interactive apps
+
+---
+
+# Key Learning Summary
+
+React makes UI dynamic using state.
+
+User actions update state.
+
+State updates UI automatically.
+
+---
+
+# Project Type
+
+Beginner React Project
+
+Foundation for advanced projects.
+
+---
+
 # Next Lecture
+
+useEffect Hook and lifecycle concepts
+
 
 useEffect Hook
 
