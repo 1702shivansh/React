@@ -1264,9 +1264,224 @@ UI Rendered
 
 ---
 
+# React JS Revision – Lecture 7
+
+## useState Interview Question – Why setCounter(count + 1) 5 Times Doesn't Work Properly
+
+This lecture covers a **very important interview question** related to **useState and state updates** using a counter example.
+
+---
+
+# Basic Counter Example
+
+```jsx
+const [count, setCounter] = useState(0);
+```
+
+---
+
+# Problem Case
+
+If we write:
+
+```jsx
+setCounter(count + 1);
+setCounter(count + 1);
+setCounter(count + 1);
+setCounter(count + 1);
+setCounter(count + 1);
+```
+
+Expected Output:
+
+```text
+Count = 5
+```
+
+Actual Output:
+
+```text
+Count = 1
+```
+
+---
+
+# Why This Happens
+
+Because:
+
+React **does not update state immediately**
+
+React **batches (groups) state updates**
+
+All 5 setCounter calls use the **same old value of count**
+
+Example:
+
+```text
+count = 0
+
+setCounter(0 + 1)
+setCounter(0 + 1)
+setCounter(0 + 1)
+setCounter(0 + 1)
+setCounter(0 + 1)
+```
+
+Final result:
+
+```text
+count = 1
+```
+
+---
+
+# Correct Solution: Using Callback Function
+
+```jsx
+setCounter(prev => prev + 1);
+setCounter(prev => prev + 1);
+setCounter(prev => prev + 1);
+setCounter(prev => prev + 1);
+setCounter(prev => prev + 1);
+```
+
+Output:
+
+```text
+count = 5
+```
+
+---
+
+# Why Callback Works
+
+Because each callback gets the **latest updated value**
+
+Flow:
+
+```text
+prev = 0 → 1
+prev = 1 → 2
+prev = 2 → 3
+prev = 3 → 4
+prev = 4 → 5
+```
+
+---
+
+# Visual Difference
+
+Wrong Way:
+
+```text
+0 → 1
+0 → 1
+0 → 1
+0 → 1
+0 → 1
+Final = 1
+```
+
+Correct Way:
+
+```text
+0 → 1 → 2 → 3 → 4 → 5
+Final = 5
+```
+
+---
+
+# Reason: React State Updates are Asynchronous
+
+React:
+
+• Batches updates
+• Updates later
+• Does not update instantly
+
+---
+
+# Interview Rule (Very Important)
+
+If new state depends on previous state
+
+Always use:
+
+```jsx
+setState(prev => prev + 1)
+```
+
+Never use:
+
+```jsx
+setState(state + 1)
+```
+
+---
+
+# Real Counter Example
+
+```jsx
+function Counter() {
+
+  const [count, setCounter] = useState(0);
+
+  function increase() {
+    setCounter(prev => prev + 1);
+    setCounter(prev => prev + 1);
+    setCounter(prev => prev + 1);
+    setCounter(prev => prev + 1);
+    setCounter(prev => prev + 1);
+  }
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={increase}>Increase by 5</button>
+    </>
+  );
+}
+```
+
+---
+
+# Key Interview Concepts Learned
+
+• useState is asynchronous
+• React batches updates
+• setState does not update immediately
+• Callback function gives latest value
+
+---
+
+# Summary
+
+Wrong:
+
+```jsx
+setCounter(count + 1)
+```
+
+Correct:
+
+```jsx
+setCounter(prev => prev + 1)
+```
+
+Use callback when state depends on previous value.
+
+---
+
+# Interview One Line Answer
+
+React batches state updates, so multiple setState(count+1) use same old value. Using functional callback ensures latest state is used.
+
+---
+
 # Next Lecture
 
-useState Hook and state management
+useEffect Hook
 
 
 
