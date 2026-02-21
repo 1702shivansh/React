@@ -1071,8 +1071,202 @@ React is fast because of:
 
 ---
 
+# React JS Revision – Lecture 6
+
+## Props in React and Basics of Tailwind CSS
+
+This lecture covers **Props**, **reusable components**, and **basic usage of Tailwind CSS in React**.
+
+---
+
+# What are Props?
+
+Props (Properties) are used to **pass data from parent component to child component**
+
+They make components **dynamic and reusable**
+
+---
+
+# Example of Props
+
+Parent Component:
+
+```jsx
+<Card username="Shivansh" />
+```
+
+Child Component:
+
+```jsx
+function Card(props) {
+  return <h1>Hello {props.username}</h1>
+}
+```
+
+Output:
+
+```text
+Hello Shivansh
+```
+
+---
+
+# Why Props are Needed
+
+Props help to:
+
+• Pass data
+• Reuse components
+• Make dynamic UI
+
+Without props, components would be static.
+
+---
+
+# Reusable Component Example
+
+```jsx
+function Card(props) {
+  return (
+    <div>
+      <h2>{props.username}</h2>
+      <p>{props.post}</p>
+    </div>
+  )
+}
+```
+
+Using reusable component:
+
+```jsx
+<Card username="Shivansh" post="Frontend Developer" />
+<Card username="Rahul" post="Backend Developer" />
+```
+
+---
+
+# Props Flow
+
+```text
+Parent Component
+      ↓
+Pass Props
+      ↓
+Child Component
+      ↓
+UI Render
+```
+
+---
+
+# Props are Read-Only
+
+Props cannot be modified inside child component.
+
+Props are immutable.
+
+---
+
+# Tailwind CSS in React
+
+Tailwind is a **utility-first CSS framework**
+
+It is used to style components quickly.
+
+---
+
+# Example Tailwind Styling
+
+```jsx
+<h1 className="text-3xl font-bold text-blue-500">
+  Hello Shivansh
+</h1>
+```
+
+---
+
+# Why className not class?
+
+React uses:
+
+```jsx
+className
+```
+
+because:
+
+```jsx
+class
+```
+
+is reserved keyword in JavaScript.
+
+---
+
+# Example Reusable Card with Tailwind
+
+```jsx
+function Card(props) {
+  return (
+    <div className="bg-gray-200 p-4 rounded-lg">
+      <h2 className="text-xl font-bold">{props.username}</h2>
+      <p>{props.post}</p>
+    </div>
+  )
+}
+```
+
+---
+
+# Benefits of Tailwind
+
+• Fast styling
+• No separate CSS file needed
+• Clean code
+• Highly customizable
+
+---
+
+# What we learned in this lecture
+
+• What are Props
+• How to pass Props
+• Reusable components
+• Props are read-only
+• Basics of Tailwind CSS
+• Styling React components
+
+---
+
+# Summary
+
+Props allow components to become reusable.
+
+Tailwind helps in fast and easy styling.
+
+Reusable components improve code quality.
+
+---
+
+# Example Final Flow
+
+```text
+App Component
+   ↓
+Pass Props
+   ↓
+Reusable Card Component
+   ↓
+Styled using Tailwind
+   ↓
+UI Rendered
+```
+
+---
+
 # Next Lecture
 
-Deep dive into useState and state updates
+useState Hook and state management
+
 
 
