@@ -794,7 +794,285 @@ Hooks allow functional components to use state and update UI.
 
 ---
 
+# React JS Revision – Lecture 5
+
+## Virtual DOM, Reconciliation, Fiber Architecture and Keys
+
+This lecture explains **how React updates the UI efficiently** and the role of **Reconciliation, Fiber, and Keys**.
+
+---
+
+# Virtual DOM (Concept)
+
+Virtual DOM is a **JavaScript representation of the Real DOM**
+
+Example:
+
+Real DOM:
+
+```html
+<div>
+  <h1>Hello</h1>
+</div>
+```
+
+Virtual DOM:
+
+```js
+{
+  type: "div",
+  children: [
+    { type: "h1", children: "Hello" }
+  ]
+}
+```
+
+---
+
+# Why Virtual DOM was needed
+
+Direct DOM updates are:
+
+• Slow
+• Expensive
+
+Virtual DOM improves performance by:
+
+• Comparing old and new version
+• Updating only changed parts
+
+---
+
+# Important Note
+
+Virtual DOM is just a **concept**
+
+The real algorithm behind it is called:
+
+# Reconciliation
+
+---
+
+# Reconciliation
+
+Reconciliation is the **algorithm React uses to update the UI**
+
+It:
+
+• Compares old tree and new tree
+• Finds differences
+• Updates only required elements
+
+This process is called:
+
+Diffing Algorithm
+
+---
+
+# Example
+
+Old:
+
+```text
+<h1>Hello</h1>
+```
+
+New:
+
+```text
+<h1>Hello Shivansh</h1>
+```
+
+React updates only text
+
+Not entire element
+
+---
+
+# Problem with Old System
+
+Reconciliation earlier was:
+
+• Synchronous
+• Blocking
+• Slow for large apps
+
+To solve this React introduced:
+
+# Fiber Architecture
+
+---
+
+# Fiber Architecture
+
+Fiber is the **new reconciliation engine**
+
+It makes React:
+
+• Faster
+• Smarter
+• Non-blocking
+
+---
+
+# Why Fiber is better
+
+Fiber allows React to:
+
+• Break work into small tasks
+• Pause work
+• Resume work
+• Prioritize important updates
+
+This improves performance.
+
+---
+
+# React Tree using Fiber
+
+Example:
+
+```text
+App
+ ├ Navbar
+ ├ Sidebar
+ └ Content
+```
+
+React updates only changed component
+
+Not entire app
+
+---
+
+# Keys in React (Very Important)
+
+Keys help React identify elements uniquely in lists.
+
+---
+
+# Example Without Key
+
+```jsx
+{items.map(item =>
+  <li>{item}</li>
+)}
+```
+
+Problem:
+
+React gets confused when list changes
+
+Performance becomes slow
+
+---
+
+# Example With Key
+
+```jsx
+{items.map(item =>
+  <li key={item.id}>{item}</li>
+)}
+```
+
+Now React can:
+
+• Identify element
+• Update efficiently
+
+---
+
+# Why Keys are Needed
+
+Keys help in:
+
+• Faster reconciliation
+• Better performance
+• Correct UI updates
+
+---
+
+# Real Example Problem Without Key
+
+Old:
+
+```text
+A B C
+```
+
+New:
+
+```text
+B C D
+```
+
+Without key:
+
+React re-renders all
+
+With key:
+
+React updates only changed item
+
+---
+
+# Summary Flow
+
+```text
+State change
+ ↓
+Reconciliation
+ ↓
+Fiber processes update
+ ↓
+Diff calculated
+ ↓
+DOM updated efficiently
+```
+
+---
+
+# Key Concepts Learned
+
+• Virtual DOM is a concept
+• Reconciliation is the real algorithm
+• Fiber is the modern engine
+• Keys improve performance
+• React updates only required elements
+
+---
+
+# Best Practice
+
+Always use unique key in lists:
+
+```jsx
+key={item.id}
+```
+
+Never use:
+
+```jsx
+key={index}
+```
+
+(if list changes dynamically)
+
+---
+
+# Final Summary
+
+React is fast because of:
+
+• Reconciliation
+• Fiber Architecture
+• Efficient DOM updates
+• Proper use of Keys
+
+---
+
 # Next Lecture
 
-Deep dive into useState Hook
+Deep dive into useState and state updates
+
 
