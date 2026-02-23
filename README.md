@@ -1812,11 +1812,110 @@ It combines:
 This represents real React development workflow.
 
 ---
+# 💱 Currency Converter (React)
 
-# Next Learning Step
+A modern and responsive Currency Converter built with **React.js** that provides real-time exchange rates using a public currency API. Users can convert between multiple currencies, swap currencies instantly, and view accurate conversion results.
 
-Advanced Hooks and building larger real-world React applications
+---
 
+## 🚀 Features
+
+* 🌍 Real-time currency conversion
+* 🔄 Swap currencies instantly
+* ⚡ Fast and responsive UI
+* 🧩 Reusable components (InputBox)
+* 🪝 Custom React Hook for API fetching
+* 🎨 Styled with Tailwind CSS
+* 🛡️ Error-safe and clean architecture
+
+---
+
+## 🛠️ Tech Stack
+
+* **React.js** – Frontend library
+* **Tailwind CSS** – Styling
+* **JavaScript (ES6+)** – Logic
+* **Currency API** – Exchange rates
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│
+├── components/
+│   └── InputBox.jsx
+│
+├── hooks/
+│   └── useCurrencyInfo.js
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+```bash
+# Clone repository
+git clone https://github.com/yourusername/currency-converter.git
+
+# Navigate to project
+cd currency-converter
+
+# Install dependencies
+npm install
+
+# Run project
+npm run dev
+```
+
+---
+
+## 🌐 API Used
+
+```
+https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/
+```
+
+---
+
+## 🎯 Learning Outcomes
+
+* Working with APIs in React
+* Creating Custom Hooks
+* Managing state with useState
+* Component reusability
+* Handling asynchronous data
+
+---
+
+## 📸 Preview
+
+<img width="400" alt="preview" src="https://via.placeholder.com/400x250.png?text=Currency+Converter+Preview">
+
+---
+
+## 📌 Future Improvements
+
+* Live auto-convert
+* Loading indicator
+* Conversion history
+* Charts for trends
+
+---
+
+## 👨‍💻 Author
+
+**Shivansh Grover**
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub and feel free to contribute!
 
 
 
