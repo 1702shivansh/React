@@ -1905,17 +1905,275 @@ https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/
 * Conversion history
 * Charts for trends
 
+# React JS Revision – Lecture 10
+
+## React Router, Layout, Outlet, Loaders and Dynamic Routing
+
+This lecture focuses on **client-side routing in React** using React Router. We built a multi-page application with a **Layout component**, implemented routing using two methods, and learned important hooks like **useParams** and **useLoaderData**.
+
+This is a **core concept for building real-world React applications**.
+
 ---
 
-## 👨‍💻 Author
+# What is React Router?
 
-**Shivansh Grover**
+React Router is a library used to **handle navigation between different components without reloading the page**.
+
+It enables:
+
+• Multi-page feel in Single Page Applications (SPA)
+• Fast navigation
+• Better user experience
 
 ---
 
-## ⭐ If you like this project
+# Why Not Use Anchor (`<a>`) Tags?
 
-Give it a ⭐ on GitHub and feel free to contribute!
+Anchor tags cause:
+
+• Full page reload
+• Loss of state
+• Slow performance
+
+React Router provides navigation **without reloading the page**, making apps faster.
+
+React Router uses **client-side routing**.
+
+---
+
+# Project Structure Overview
+
+We created:
+
+• Layout Component
+• Home Page
+• About Page
+• Contact Page
+• User Page (Dynamic Route)
+• Github Page (Data Loader)
+
+---
+
+# Layout Component Concept
+
+Layout is a **shared structure** used across all pages.
+
+Example layout contains:
+
+• Navbar
+• Footer
+• Main content area
+
+Instead of repeating layout in every page, we create it once.
+
+---
+
+# Outlet Concept (Very Important)
+
+Outlet is used to **render child components inside Layout**
+
+Flow:
+
+```text id="5apwqv"
+Layout
+  ↓
+Outlet
+  ↓
+Child Page (Home, About, Contact, etc)
+```
+
+Outlet acts as a **placeholder**
+
+---
+
+# Creating Router – Two Methods
+
+---
+
+## Method 1: Object-Based Routing
+
+Router can be created using configuration objects.
+
+This method uses structured objects to define routes.
+
+---
+
+## Method 2: Component-Based Routing (Used in Project)
+
+Router created using:
+
+createRoutesFromElements
+
+This method uses JSX syntax.
+
+This is more readable and commonly used.
+
+---
+
+# Router Provider
+
+RouterProvider is used to:
+
+Connect router with React application.
+
+It enables routing functionality.
+
+---
+
+# Nested Routing
+
+Nested routing allows child routes inside parent route.
+
+Example structure:
+
+```text id="u0p33s"
+/
+ ├ about
+ ├ contact
+ ├ user/:userid
+ └ github
+```
+
+All render inside Layout using Outlet.
+
+---
+
+# Dynamic Routing using useParams
+
+Dynamic routes allow passing dynamic values in URL.
+
+Example:
+
+```text id="g54dx1"
+/user/101
+```
+
+Here:
+
+userid is dynamic.
+
+useParams hook is used to access this value.
+
+---
+
+# Loader Function Concept
+
+Loader is used to:
+
+Fetch data before component renders.
+
+This improves performance and user experience.
+
+Loader runs before component loads.
+
+---
+
+# useLoaderData Hook
+
+useLoaderData is used to:
+
+Access data fetched by loader function.
+
+This avoids using useEffect for data fetching.
+
+This is modern and optimized approach.
+
+---
+
+# Application Flow
+
+```text id="s26l5z"
+User clicks link
+      ↓
+React Router handles navigation
+      ↓
+Layout loads
+      ↓
+Outlet renders selected page
+      ↓
+If loader exists → data fetched
+      ↓
+Component renders
+```
+
+---
+
+# Hooks Learned in This Lecture
+
+---
+
+## useParams
+
+Used to get dynamic values from URL
+
+Example use case:
+
+User profile pages
+
+---
+
+## useLoaderData
+
+Used to access loader data
+
+Example use case:
+
+API data fetching
+
+---
+
+# Benefits of React Router
+
+• No page reload
+• Fast navigation
+• Better performance
+• Clean structure
+• Supports dynamic routing
+• Supports data loading
+
+---
+
+# Key Concepts Learned
+
+• React Router basics
+• Layout component
+• Outlet usage
+• Nested routing
+• Dynamic routing
+• Loader function
+• useParams hook
+• useLoaderData hook
+
+---
+
+# Real-World Applications
+
+React Router is used in:
+
+• Dashboards
+• Authentication systems
+• E-commerce websites
+• Social media apps
+• Admin panels
+
+---
+
+# Interview Important Points
+
+React Router enables client-side routing.
+
+Outlet is used to render child routes.
+
+useParams is used for dynamic routes.
+
+useLoaderData is used for pre-loading data.
+
+Anchor tags should be avoided in React apps.
+
+---
+
+
+
 
 
 
