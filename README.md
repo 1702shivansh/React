@@ -2172,7 +2172,311 @@ Anchor tags should be avoided in React apps.
 
 ---
 
+React Context API Learning Projects
 
+This repository contains two small React projects created to understand how the React Context API works and how it can be used to manage global state in React applications.
+
+The projects demonstrate:
+
+How to avoid prop drilling
+
+How to create and use React Context
+
+Different patterns of implementing Context API
+
+Using custom hooks with Context
+
+Implementing global theme switching
+
+Configuring Tailwind CSS v4 dark mode
+
+What is React Context API?
+
+The React Context API is a built-in feature in React that allows data to be shared globally between components without passing props manually at every level.
+
+Normally in React, data flows from parent to child using props.
+
+Example:
+
+App
+ └── Parent
+      └── Child
+           └── GrandChild
+
+If GrandChild needs data from App, we must pass props through every component.
+
+App → Parent → Child → GrandChild
+
+This process is called prop drilling.
+
+React Context API solves this problem by creating a global data store that any component can access.
+
+How Context API Works
+
+The Context API consists of three main parts:
+
+1. Context Creation
+
+A context is created using:
+
+createContext()
+
+Example:
+
+import { createContext } from "react";
+
+const UserContext = createContext();
+2. Provider
+
+The Provider supplies data to all components inside it.
+
+Example:
+
+<UserContext.Provider value={data}>
+   <App />
+</UserContext.Provider>
+
+Any component inside this provider can access the context.
+
+3. Consumer
+
+Components access context using:
+
+useContext()
+
+Example:
+
+const user = useContext(UserContext);
+Why Use Context API?
+
+Advantages:
+
+Avoids prop drilling
+
+Centralized global state
+
+Cleaner component structure
+
+Easy data sharing between unrelated components
+
+Common use cases:
+
+Authentication state
+
+Theme switching
+
+Language settings
+
+User preferences
+
+Global configuration
+
+Projects in This Repository
+
+This repository contains two implementations of Context API.
+
+Project	Description
+User Login Context	Demonstrates global user state
+Theme Switcher	Demonstrates global theme state
+Project 1: User Login Context
+Overview
+
+This project demonstrates how to use Context API to manage user login state globally.
+
+When a user logs in:
+
+Username and password are stored in Context
+
+Any component can access this data
+
+Folder Structure
+src
+ ├── Context
+ │    └── UserContext.js
+ │
+ ├── components
+ │    ├── Login.jsx
+ │    └── Profile.jsx
+ │
+ ├── App.jsx
+ └── main.jsx
+Context Creation
+import { createContext } from "react";
+
+const UserContext = createContext();
+
+export default UserContext;
+Providing Context
+<UserContext.Provider value={{ user, setUser }}>
+   <App />
+</UserContext.Provider>
+Login Component
+
+Updates the global user state.
+
+const { setUser } = useContext(UserContext);
+
+setUser({ username, password });
+Profile Component
+
+Reads the user from context.
+
+const { user } = useContext(UserContext);
+Behavior
+
+If user is not logged in:
+
+Please login to view your profile
+
+If logged in:
+
+Welcome username
+Project 2: Theme Switcher (Light / Dark Mode)
+Overview
+
+This project demonstrates using Context API to manage global theme state.
+
+The user can toggle between:
+
+Light Mode
+
+Dark Mode
+
+The theme is applied by adding a class to the HTML element.
+
+<html class="dark">
+Folder Structure
+src
+ ├── contexts
+ │    └── theme.js
+ │
+ ├── components
+ │    ├── ThemeBtn.jsx
+ │    └── Card.jsx
+ │
+ ├── App.jsx
+ └── main.jsx
+Context Implementation Using Custom Hook
+
+Instead of using useContext() everywhere, a custom hook is created.
+
+theme.js
+import { createContext, useContext } from "react";
+
+export const ThemeContext = createContext({
+  themeMode: "light",
+  darkTheme: () => {},
+  lightTheme: () => {},
+});
+
+export const ThemeProvider = ThemeContext.Provider;
+
+export default function useTheme() {
+  return useContext(ThemeContext);
+}
+
+Now we can access context like this:
+
+useTheme()
+
+instead of:
+
+useContext(ThemeContext)
+Theme Provider
+
+The provider wraps the application.
+
+<ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
+   <App />
+</ThemeProvider>
+Theme Toggle Button
+
+The toggle switch changes the theme.
+
+const { themeMode, darkTheme, lightTheme } = useTheme();
+
+const onChangeBtn = (e) => {
+  const darkModeStatus = e.currentTarget.checked;
+
+  if (darkModeStatus) darkTheme();
+  else lightTheme();
+};
+Applying Theme to HTML
+
+The theme is applied using useEffect.
+
+useEffect(() => {
+  document.documentElement.classList.remove("light","dark");
+  document.documentElement.classList.add(themeMode);
+}, [themeMode]);
+Tailwind CSS v4 Dark Mode Setup
+
+Tailwind CSS v4 introduced changes to dark mode configuration.
+
+Instead of configuring dark mode in tailwind.config.js, we define a custom variant in CSS.
+
+index.css
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+This allows Tailwind to apply dark: styles when .dark class is present.
+
+Example Dark Mode Component
+<div className="bg-white dark:bg-gray-800 text-black dark:text-white">
+  Dark Mode Card
+</div>
+Vite Configuration
+
+Tailwind v4 requires the Vite plugin.
+
+vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+Concepts Learned
+
+Through these projects, the following concepts were learned:
+
+React Context API
+
+Global state management
+
+Avoiding prop drilling
+
+Custom hooks
+
+Provider pattern
+
+Tailwind CSS dark mode
+
+React hooks (useState, useEffect, useContext)
+
+Component-based architecture
+
+Key Takeaways
+Context API is useful when
+
+Many components need the same data
+
+Props are being passed through multiple layers
+
+Global settings are required
+
+Best Practices
+
+Use custom hooks for cleaner code
+
+Avoid storing large or frequently changing state in context
+
+Use multiple contexts instead of one large global context
 
 
 
