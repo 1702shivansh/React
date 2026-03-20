@@ -2172,135 +2172,212 @@ Anchor tags should be avoided in React apps.
 
 ---
 
-📘 React Context API Learning (Chai aur Code)
+# 🧠 React Context API + Projects (Theme Switcher & Todo App)
 
-This repository showcases my hands-on learning and implementation of the Context API in React, guided by the Chai aur Code playlist.
+This repository demonstrates **React Context API** through practical projects, including a **Theme Switcher** and a **Todo List App**. It focuses on managing global state efficiently without prop drilling.
 
-It demonstrates two practical approaches to managing global state in React applications.
+---
 
-🚀 Overview
+# 📘 What is Context API?
 
-In this project, I explored:
+The **Context API** in React is a built-in feature that allows you to share state (data) across multiple components **without passing props manually at every level**.
 
-Avoiding prop drilling
+### 🚫 Problem it solves
 
-Managing global state efficiently
+Prop drilling:
 
-Structuring scalable React applications
+```text
+App → Parent → Child → Grandchild → Component
+```
 
-Creating reusable logic using custom hooks
+Passing props through multiple layers becomes messy.
 
-🧠 What is Context API?
+### ✅ Solution
 
-The Context API is a React feature that allows you to share data across components without manually passing props at every level.
+Context API provides a **global store** that any component can access directly.
 
-❗ Problem: Prop Drilling
+---
 
-Passing data through multiple nested components becomes:
+# ⚙️ Core Concepts
 
-Hard to manage
+* **createContext()** → Creates a global context
+* **Provider** → Wraps components and provides data
+* **useContext()** → Accesses the context values
 
-Difficult to scale
+---
 
-✅ Solution: Context API
+# 🧩 Two Ways to Use Context API
 
-Centralized state management
+## 🔹 1. Separate Context & Provider (Recommended)
 
-Direct access from any component
+You define context and provider in a separate file.
 
-Cleaner and more maintainable code
+```js id="ctx1"
+import { createContext, useContext } from "react";
 
-⚙️ How It Works
-1️⃣ Create Context
-import React from "react";
+export const TodoContext = createContext();
 
-const MyContext = React.createContext();
-export default MyContext;
-2️⃣ Provide Context
-<MyContext.Provider value={data}>
-  <App />
-</MyContext.Provider>
-3️⃣ Consume Context
-import { useContext } from "react";
+export const useTodo = () => {
+    return useContext(TodoContext);
+};
 
-const value = useContext(MyContext);
-🧩 Method 1: Context + Provider Pattern
-📁 Structure
-Context/
- ├── UserContext.js
- └── UserContextProvider.jsx
-components/
- ├── Login.jsx
- └── Profile.jsx
-💡 Key Features
+export const TodoProvider = TodoContext.Provider;
+```
 
-Separate Context and Provider
+### ✅ Advantages
 
-Global user state management using useState
+* Clean structure
+* Reusable
+* Scalable for large apps
 
-Clean separation of concerns
+---
 
-✅ Use Case
+## 🔹 2. Combined Approach (Inside Component)
 
-Managing user authentication data across components
+Define context and provider together:
 
-🎨 Method 2: Theme Switcher (Custom Hook Pattern)
-📁 Structure
-contexts/
- └── theme.js
-components/
- ├── ThemeBtn.jsx
- └── Card.jsx
-💡 Key Features
+```js id="ctx2"
+const ThemeContext = createContext();
 
-Directly exported Provider
+function App() {
+    const [theme, setTheme] = useState("light");
 
-Custom hook (useTheme) for cleaner usage
+    return (
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            <Child />
+        </ThemeContext.Provider>
+    );
+}
+```
 
-Light/Dark mode toggle
+### ✅ Advantages
 
-Dynamic DOM class updates
+* Quick and simple
+* Good for small projects
 
-🌗 Functionality
+### ❌ Disadvantage
 
-Switch between Light and Dark themes
+* Not scalable for large apps
 
-Global theme state accessible anywhere
+---
 
-🔥 Comparison of Both Methods
-Feature	Method 1	Method 2
-Setup	Separate Provider Component	Direct Provider
-Code Cleanliness	Moderate	Cleaner
-Reusability	Good	Excellent
-Scalability	Basic	Better
-⚠️ When to Use Context API
+# 🎨 Project 1: Theme Switcher (Context API)
 
-Use it when:
+A simple project to toggle between **Light and Dark themes** globally.
 
-You need global state (auth, theme, user)
+## 🚀 Features
 
-Props are passed through many layers
+* 🌗 Toggle between light & dark mode
+* 🌍 Global theme state using Context API
+* ⚡ Instant UI updates across components
 
-State updates are not extremely frequent
+## 🧠 How it works
 
-🚫 When to Avoid Context API
+* Context stores `theme` and `setTheme`
+* Provider wraps entire app
+* Any component can switch theme using `useContext`
 
-Avoid when:
+---
 
-State updates frequently (can cause performance issues)
+# 📝 Project 2: Todo List App (Context API)
 
-Application becomes very large → consider state libraries like:
+A full-featured Todo application using Context API for **global state management**.
 
-Redux
+---
 
-Zustand
+## 🚀 Features
 
-🧠 Key Takeaways
+* ➕ Add todos
+* ✏️ Update todos
+* ❌ Delete todos
+* ✅ Mark as completed
+* 💾 Persistent storage (localStorage)
+* 🌐 Global state via Context API
 
-Context API simplifies state sharing
+---
 
-Custom hooks improve developer experience
+## 🛠️ Tech Stack
 
-Keep contexts modular and minimal
+* **React.js**
+* **Context API**
+* **JavaScript (ES6+)**
+* **Tailwind CSS**
 
-Use wisely to avoid unnecessary re-renders
+---
+
+## 📂 Project Structure
+
+```id="ctx3"
+src/
+│
+├── components/
+│   ├── TodoForm.jsx
+│   ├── TodoItem.jsx
+│   └── index.js
+│
+├── contexts/
+│   └── TodoContext.js
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+```bash id="ctx4"
+git clone https://github.com/yourusername/todo-context-app.git
+cd todo-context-app
+npm install
+npm run dev
+```
+
+---
+
+## 🧠 Context Flow in Todo App
+
+1. **Create Context**
+2. **Wrap App with Provider**
+3. **Store todos in global state**
+4. **Access using custom hook (`useTodo`)**
+5. **Perform CRUD operations globally**
+
+---
+
+## 💾 Local Storage Integration
+
+* Saves todos automatically
+* Loads data on refresh
+* Ensures persistence
+
+---
+
+## 🎯 Learning Outcomes
+
+* Deep understanding of Context API
+* Avoiding prop drilling
+* Managing global state
+* Building scalable React apps
+* Integrating localStorage
+
+---
+
+## 📌 Future Improvements
+
+* Drag & drop todos
+* Filters (All / Completed / Pending)
+* Due dates
+* Animations
+
+---
+
+## 👨‍💻 Author
+
+**Shivansh Grover**
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub and feel free to contribute!
