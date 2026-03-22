@@ -2353,31 +2353,348 @@ npm run dev
 
 ---
 
-## 🎯 Learning Outcomes
+# React JS Revision – Redux Toolkit
 
-* Deep understanding of Context API
-* Avoiding prop drilling
-* Managing global state
-* Building scalable React apps
-* Integrating localStorage
+## Todo App using Redux Toolkit (Add, Update, Delete)
 
----
+This project focuses on **state management using Redux Toolkit** by building a **Todo Application** with features like:
 
-## 📌 Future Improvements
+• Add Todo
+• Update Todo
+• Delete Todo
 
-* Drag & drop todos
-* Filters (All / Completed / Pending)
-* Due dates
-* Animations
+It covers **core Redux concepts in a modern and simplified way**.
 
 ---
 
-## 👨‍💻 Author
+# What is Redux Toolkit?
 
-**Shivansh Grover**
+Redux Toolkit (RTK) is the **official, recommended way to use Redux**.
+
+It simplifies Redux by:
+
+• Reducing boilerplate code
+• Providing built-in utilities
+• Making state management easier
 
 ---
 
-## ⭐ If you like this project
+# Why Redux Toolkit?
 
-Give it a ⭐ on GitHub and feel free to contribute!
+Traditional Redux was:
+
+• Complex
+• Verbose
+• Hard to manage
+
+Redux Toolkit solves this by:
+
+• Using `createSlice`
+• Providing `configureStore`
+• Handling immutability internally
+
+---
+
+# Core Concepts
+
+---
+
+## 1. Store
+
+Store is the **central place where entire application state is stored**
+
+It holds:
+
+• State
+• Reducers
+
+---
+
+## 2. State
+
+State is the **data of your application**
+
+Example in Todo App:
+
+• List of todos
+• Each todo has id, text, etc
+
+---
+
+## 3. Actions
+
+Actions describe **what needs to be done**
+
+Examples:
+
+• Add Todo
+• Delete Todo
+• Update Todo
+
+---
+
+## 4. Reducers
+
+Reducers are functions that:
+
+• Take current state
+• Take action
+• Return updated state
+
+---
+
+# Redux Toolkit Flow
+
+```text id="2r4o7q"
+Component
+   ↓
+Dispatch Action
+   ↓
+Reducer Handles Action
+   ↓
+State Updated in Store
+   ↓
+UI Re-renders
+```
+
+👉 **Important:** Dispatch sends actions, and those actions are handled by reducers to update the store.
+
+---
+
+# configureStore
+
+Used to create the Redux store.
+
+It:
+
+• Combines reducers
+• Sets up store
+• Enables DevTools
+
+---
+
+# createSlice (Most Important)
+
+createSlice is used to:
+
+• Define state
+• Define reducers
+• Auto-generate actions
+
+---
+
+## Basic Structure of a Slice
+
+```text id="8km7t4"
+Slice
+ ├ name
+ ├ initialState
+ └ reducers
+```
+
+---
+
+### 1. name
+
+Unique name of slice
+
+---
+
+### 2. initialState
+
+Initial data of state
+
+Example:
+
+```text id="0b8p3h"
+todos: []
+```
+
+---
+
+### 3. reducers
+
+Contains functions to modify state
+
+Example operations:
+
+• Add Todo
+• Delete Todo
+• Update Todo
+
+---
+
+# Actions in Redux Toolkit
+
+Actions are automatically created by:
+
+createSlice
+
+No need to manually define action types.
+
+---
+
+# useDispatch Hook
+
+Used to:
+
+Send actions to Redux store
+
+Example use:
+
+```text id="c10quc"
+dispatch(addTodo())
+```
+
+---
+
+# useSelector Hook
+
+Used to:
+
+Access data from Redux store
+
+Example use:
+
+```text id="psu7n8"
+const todos = useSelector(state => state.todos)
+```
+
+---
+
+# nanoid
+
+nanoid is used to:
+
+Generate **unique IDs**
+
+Useful in Todo app for:
+
+• Identifying each todo
+• Updating specific todo
+• Deleting specific todo
+
+---
+
+# Todo App Features (Implementation)
+
+---
+
+## Add Todo
+
+• User enters text
+• Action dispatched
+• Reducer adds todo to state
+
+---
+
+## Delete Todo
+
+• User clicks delete
+• Action dispatched
+• Reducer removes todo
+
+---
+
+## Update Todo
+
+• User edits todo
+• Action dispatched
+• Reducer updates specific todo
+
+---
+
+# State Update Handling
+
+Redux Toolkit uses:
+
+Immer (internally)
+
+So we can write:
+
+```text id="27u8hb"
+state.value = newValue
+```
+
+Even though Redux is immutable.
+
+---
+
+# Folder Structure (Typical)
+
+```text id="7y0b3o"
+src/
+ ├ app/
+ │   └ store.js
+ ├ features/
+ │   └ todo/
+ │       └ todoSlice.js
+ ├ components/
+ │   └ Todo.jsx
+```
+
+---
+
+# Complete Flow Example
+
+```text id="9s9h4d"
+User clicks Add
+      ↓
+dispatch(addTodo)
+      ↓
+Reducer updates state
+      ↓
+Store updated
+      ↓
+useSelector gets new state
+      ↓
+UI updates
+```
+
+---
+
+# Key Advantages of Redux Toolkit
+
+• Simple syntax
+• Less boilerplate
+• Scalable
+• Clean architecture
+• Industry standard
+
+---
+
+# Interview Important Points
+
+• Redux Toolkit simplifies Redux
+• createSlice creates reducers + actions
+• configureStore creates store
+• useDispatch sends actions
+• useSelector reads state
+• nanoid generates unique IDs
+
+---
+
+# Summary
+
+Redux Toolkit provides a **clean and efficient way to manage global state**
+
+Using:
+
+• Store
+• Slice
+• Actions
+• Reducers
+
+We can build scalable applications.
+
+---
+
+# Project Level
+
+Beginner → Intermediate
+
+---
+
+# Next Learning Step
+
+Async actions using Redux Toolkit (createAsyncThunk)
